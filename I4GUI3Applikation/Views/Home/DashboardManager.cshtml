@@ -1,7 +1,8 @@
 ﻿<div id="app">
     <div id="nav">
         <router-link to="/createmodel">Create Model</router-link> |
-        <router-link to="/bar">Create Job</router-link>
+        <router-link to="/bar">Create Job</router-link> |
+        <router-link to="/test">Test</router-link>
     </div>
     <router-view></router-view>
 </div>
@@ -13,7 +14,8 @@
 
     const routes = [
         { path: '/createmodel', component: CreateModel },
-        { path: '/bar', component: Bar }
+        { path: '/bar', component: Bar },
+        { path: '/test', component: TestComponent }
     ]
 
     const router = new VueRouter({
@@ -39,12 +41,46 @@
         padding: 30px;
     }
 
-        .nav a {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
     .router-link-exact-active {
         color: #42b983;
     }
+
+    .model-container {
+        width: 525px;
+        height: 750px;
+        %background: aqua;
+        margin: auto;
+        padding: 10px;
+        margin-top: 40px;
+    }
+
+    .textfield {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        %background-color: #f8f8f8;
+        resize:none;
+    }
+
+    .form-container {
+        padding-left: 15px;
+        float: right;
+        height: 75%;
+        text-align: left;
+        width: 325px;
+        %background: black;
+    }
+
+    .input-container {
+        text-align: left;
+        width: 175px;
+        height: 75%;
+        %background: red;
+        float: left;
+    }
+
+
 </style>
