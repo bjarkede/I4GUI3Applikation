@@ -17,5 +17,10 @@ namespace I4GUI3Applikation.Controllers
         {
             return View();
         }
+
+        public ActionResult DashboardModel()
+        {
+            return View();
+        }
     }
 }
