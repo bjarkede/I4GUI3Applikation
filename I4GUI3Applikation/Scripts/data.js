@@ -1,7 +1,8 @@
-const CreateModel = Vue.component('create-model', {
+JWT = ''
+
+CreateModel = Vue.component('create-model', {
     data: function () {
         return {
-            msg: 'Hello',
             firstname: '',
             lastname: '',
             email: '',
@@ -16,6 +17,8 @@ const CreateModel = Vue.component('create-model', {
             height: '',
             eyecolor: '',
             haircolor: '',
+            password: '',
+            jwt: '',
         }
     },
     template: `
@@ -56,15 +59,84 @@ const CreateModel = Vue.component('create-model', {
                 </textarea>
             </form>
             <br>
-            <button class="button">Create model</button>
+            <button class="button" v-on:click="post">Create model</button>
         </div>
     </section>    
     `,
-    mounted() {
-        axios
-            .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-            .then(response => (this.msg = response))
+    methods: {
+        post: function (event) {
+            axios
+                .post('https://localhost:44368/api/Models', {
+                    firstName: this.firstname,
+                    lastName: this.lastname,
+                    email: this.email,
+                    phoneNo: this.phoneno,
+                    addresLine1: this.addr1,
+                    addresLine2: this.addr2,
+                    zip: this.zip,
+                    city: this.city,
+                    country: this.country,
+                    birthDate: '2020-05-11T17:52:58.314Z',
+                    nationality: this.nationality,
+                    height: 0,
+                    shoeSize: 0,
+                    hairColor: this.haircolor,
+                    eyeColor: this.eyecolor,
+                    comments: this.comments,
+                    password: this.password
+                }).then((response) => {
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        }
     }
+})
+
+LoginComponent = Vue.component('login-component', {
+    data: function () {
+        return {
+            email: '',
+            password: '',
+            oldpassword: ''
+        }
+    },
+    template: 
+    `
+        <div class="container">
+        <div class="body">
+            <h1 class="title">Welcome to Model Manager</h1>
+            <h2 class="subtitle">Login to your personal dashboard below</h2>
+            <div class="button-block">
+                <h3 class="subsubtitle">Login</h3>
+                <p>Email</p>
+                <input v-on:keyup.enter="login" class="inputfield" type="text" v-model="email" />
+                <br />
+                <p>Password</p>
+                <input v-on:keyup.enter="login" class="inputfield" type="password" v-model="password" />
+                <button v-on:click="login" class="button">Login</button>
+            </div>
+        </div>
+    </div>
+    `,
+    methods: {
+        login: function (event) {
+            // `this` inside methods points to the Vue instance
+            //alert(this.username + ' ' + this.password)
+            axios.post('https://localhost:44368/api/Account/login',
+                {
+                    email: this.email,
+                    password: this.password,
+                    oldPassword: this.oldpassword
+                }).then((response) => {
+                    axios.defaults.headers.post['Authorization'] = 'Bearer '.concat(response.data.jwt.toString()),
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+    }
+
 })
 
 const TestComponent = Vue.component('test-component', {

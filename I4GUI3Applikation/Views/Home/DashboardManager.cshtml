@@ -1,5 +1,6 @@
 ﻿<div id="app">
     <div id="nav">
+        <router-link to="/login">Login</router-link> |
         <router-link to="/createmodel">Create Model</router-link> |
         <router-link to="/bar">Create Job</router-link> |
         <router-link to="/test">Test</router-link>
@@ -13,6 +14,7 @@
     const Bar = { template: '<div>bar</div>'}
 
     const routes = [
+        { path: '/login', component: LoginComponent },
         { path: '/createmodel', component: CreateModel },
         { path: '/bar', component: Bar },
         { path: '/test', component: TestComponent }
@@ -82,5 +84,48 @@
         float: left;
     }
 
+    .body {
+        margin-left: auto;
+        margin-right: auto;
+        position: center;
+        width: 50%;
+    }
 
+    .title {
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .inputfield {
+        margin: 0px;
+        width: 100%;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .button-block {
+        margin: 50px;
+        width: 35%;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .subsubtitle {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
 </style>
