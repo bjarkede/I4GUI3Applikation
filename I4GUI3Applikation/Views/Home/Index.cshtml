@@ -6,8 +6,8 @@
             <h2 class="subtitle">Login to your personal dashboard below</h2>
             <div class="button-block">
                 <h3 class="subsubtitle">Login</h3>
-                <p>Username</p>
-                <input v-on:keyup.enter="login" class="inputfield" type="text" v-model="username" />
+                <p>Email</p>
+                <input v-on:keyup.enter="login" class="inputfield" type="text" v-model="email" />
                 <br />
                 <p>Password</p>
                 <input v-on:keyup.enter="login" class="inputfield" type="password" v-model="password" />
@@ -21,13 +21,24 @@
     var mainVue = new Vue({
         el: '#app',
         data: {
-            username: '',
-            password: ''
+            email: '',
+            password: '',
+            oldpassword: ''
         },
         methods: {
             login: function (event) {
                 // `this` inside methods points to the Vue instance
-                alert(this.username + ' ' + this.password)
+                //alert(this.username + ' ' + this.password)
+                axios.post('https://localhost:44368/api/Account/login',
+                    {
+                        email: this.email,
+                        password: this.password,
+                        oldPassword: this.oldpassword
+                    }).then((response) => {
+                        console.log(response);
+                    }, (error) => {
+                        console.log(error);
+                    });
             }
         }
     })
