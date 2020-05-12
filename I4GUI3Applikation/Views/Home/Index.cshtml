@@ -1,55 +1,107 @@
-﻿
-<div id="app">
-    <div class="container">
-        <div class="body">
-            <h1 class="title">Welcome to Model Manager</h1>
-            <h2 class="subtitle">Login to your personal dashboard below</h2>
-            <div class="button-block">
-                <h3 class="subsubtitle">Login</h3>
-                <p>Email</p>
-                <input v-on:keyup.enter="login" class="inputfield" type="text" v-model="email" />
-                <br />
-                <p>Password</p>
-                <input v-on:keyup.enter="login" class="inputfield" type="password" v-model="password" />
-                <button v-on:click="login" class="button">Login</button>
-            </div>
+﻿<div id="app">
+    <div id="nav">
+        <router-link to="/login">Login</router-link>
+        <div>
+            <router-link to="/createmodel">Create Model</router-link> |
+            <router-link to="/createmanager">Create Manager</router-link> |
+            <router-link to="/createjob">Create Job</router-link> |
+            <router-link to="/addjob">Add/Remove Job</router-link> |
+            <router-link to="/getjobs">View Jobs</router-link> |
+            <router-link to="/addexpense">Add Expense</router-link> 
         </div>
     </div>
+    <router-view></router-view>
 </div>
 
+
 <script>
-    var mainVue = new Vue({
-        el: '#app',
-        data: {
-            email: '',
-            password: '',
-            oldpassword: ''
-        },
-        methods: {
-            login: function (event) {
-                // `this` inside methods points to the Vue instance
-                //alert(this.username + ' ' + this.password)
-                axios.post('https://localhost:44368/api/Account/login',
-                    {
-                        email: this.email,
-                        password: this.password,
-                        oldPassword: this.oldpassword
-                    }).then((response) => {
-                        CreateModel.data.jwt = response.data;
-                        console.log(response);
-                    }, (error) => {
-                        console.log(error);
-                    });
-            }
-        }
+    const routes = [
+        { path: '/login', component: LoginComponent },
+        { path: '/createmodel', component: CreateModel },
+        { path: '/createmanager', component: CreateManager },
+        { path: '/createjob', component: CreateJob },
+        { path: '/addjob', component: AddJob },
+        { path: '/getjobs', component: GetJobs },
+        { path: '/addexpense', component: AddExpense },
+    ]
+
+    const router = new VueRouter({
+        routes // short for `routes: routes`
     })
+
+    new Vue({
+        el: '#app',
+        router,
+    }).$mount('#app')
 </script>
 
 <style>
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    .nav {
+        padding: 30px;
+    }
+
+    .router-link-exact-active {
+        color: #42b983;
+    }
+
+    .model-container {
+        width: 525px;
+        height: 750px;
+        %background: aqua;
+        margin: auto;
+        padding: 10px;
+        margin-top: 40px;
+    }
+
+    .manager-container {
+        width: 525px;
+        height: 750px;
+        %background: aqua;
+        margin: auto;
+        padding: 10px;
+        margin-top: 40px;
+    }
+
+    .textfield {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        %background-color: #f8f8f8;
+        resize:none;
+    }
+
+    .form-container {
+        padding-left: 15px;
+        float: right;
+        height: 75%;
+        text-align: left;
+        width: 325px;
+        %background: black;
+    }
+
+    .input-container {
+        text-align: left;
+        width: 175px;
+        height: 75%;
+        %background: red;
+        float: left;
+    }
+
     .body {
-        margin-left:auto;
-        margin-right:auto;
-        position:center;
+        margin-left: auto;
+        margin-right: auto;
+        position: center;
         width: 50%;
     }
 
@@ -80,7 +132,7 @@
     .button-block {
         margin: 50px;
         width: 35%;
-        position:relative;
+        position: relative;
         margin-left: auto;
         margin-right: auto;
     }
