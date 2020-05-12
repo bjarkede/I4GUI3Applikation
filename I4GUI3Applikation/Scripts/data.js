@@ -17,7 +17,6 @@ CreateModel = Vue.component('create-model', {
             eyecolor: '',
             haircolor: '',
             password: '',
-            jwt: '',
         }
     },
     template: `

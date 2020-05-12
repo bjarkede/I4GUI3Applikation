@@ -321,7 +321,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\components\About.vue" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <None Include="Views\Home\Test.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -347,7 +346,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\DashboardModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
