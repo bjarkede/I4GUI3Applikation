@@ -386,8 +386,10 @@ LoginComponent = Vue.component('login-component', {
                     oldPassword: this.oldpassword
                 }).then((response) => {
                     axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.jwt.toString());
+                    alert("You are logged in!")
                     console.log(response);
                 }, (error) => {
+                        loggedin = 1;
                     console.log(error);
                 });
         }
